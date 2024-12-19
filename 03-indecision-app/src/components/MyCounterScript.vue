@@ -11,49 +11,12 @@
     </section>
 </template>
 
-<script lang="ts">
-import { ref, computed, defineComponent } from 'vue';
+<script lang="ts" setup>
+    import { useCounter } from '../components/composables/useCounter'
 
-    
-    export default defineComponent({
-        props:{
-            value: { type: Number, required: true }
-        },
-        setup( props ){
-            const counter = ref(props.value);
-            const squareCounter = computed( ()=> counter.value * counter.value);
 
-            return{
-                counter,
-                squareCounter,
-            }
-        }
-    })
-    
-    //import { ref, computed } from 'vue';
-
-    // version JS
-    // const props = defineProps({
-    //     value: { type: Number, required: true },
-    // })
-
-    // version TS
-    // interface Props {
-    //     value: number;
-    // }
     // const props = defineProps<Props>();
-
-    // const counter = ref( props.value );
-    
-    // const incrementOne = () => {
-    //     counter.value = counter.value + 1;
-    // }
-    // const decrementOne = () => {
-    //     counter.value = counter.value - 1;
-    // }
-
-
-    // const squareCounter = computed( ()=> counter.value * counter.value)
+    const {counter, squareCounter} = useCounter(2)
 
 </script>
 

@@ -12,14 +12,22 @@
 </template>
 
 <script lang="ts" setup>
-    import { useCounter } from '../components/composables/useCounter'
+    import { ref, computed } from 'vue';
 
-    
+    // version JS
+    // const props = defineProps({
+    //     value: { type: Number, required: true },
+    // })
 
-    // const props = defineProps<Props>();
-        const {counter, squareCounter} = useCounter(10)
+    // version TS
+    interface Props {
+        value: number;
+    }
+    const props = defineProps<Props>();
 
+    const counter = ref( props.value );
 
+    const squareCounter = computed( ()=> counter.value * counter.value)
 
 </script>
 
