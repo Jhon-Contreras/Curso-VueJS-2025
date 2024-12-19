@@ -5,23 +5,27 @@
         <h3>Square: {{ squareCounter }}</h3>
 
         <div>
-            <button @click="incrementOne">+1</button>
-            <button @click="decrementOne">-1</button>
+            <button class="btn" @click="counter++">+1</button>
+            <button class="btn" @click="counter--">-1</button>
         </div>
     </section>
 </template>
 
 <script lang="ts" setup>
     import { ref, computed } from 'vue';
-    const counter = ref(2);
-    
-    const incrementOne = () => {
-        counter.value = counter.value + 1;
-    }
-    const decrementOne = () => {
-        counter.value = counter.value - 1;
-    }
 
+    // version JS
+    // const props = defineProps({
+    //     value: { type: Number, required: true },
+    // })
+
+    // version TS
+    interface Props {
+        value: number;
+    }
+    const props = defineProps<Props>();
+
+    const counter = ref( props.value );
 
     const squareCounter = computed( ()=> counter.value * counter.value)
 
@@ -31,4 +35,7 @@
 
 <style scoped>
 
+.btn{
+    @apply p-5 bg-blue-500 mr-2 hover:bg-blue-700;
+}
 </style>
